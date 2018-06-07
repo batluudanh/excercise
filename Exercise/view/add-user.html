@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add User</title>
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../fontawesome/css/fontawesome-all.min.css">
+    <script src="../../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../bootstrap/js/popper.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+
+        nav {
+            background: linear-gradient(to top right, #e8e8e8, #b3b3b3);
+            height: 40px;
+        }
+
+        .main-content{
+            background-image: url("../image/mian-bg2.gif");
+            padding-bottom: 5%;
+            padding-top: 2%;
+        }
+
+
+        .left{
+            width: 208px;
+        }
+        .right{
+            width: calc(100% - 208px);
+        }
+
+        .menu-item{
+            background-color: #000000;
+            height: 90%;
+        }
+
+        .menu-item img{
+            border-image: black;
+        }
+        .group-1{
+            margin-left: 40px;
+
+        }
+        .group-2{
+            margin-left: 40px;
+            margin-top: 30px;
+        }
+
+        .group-1 ul {
+            list-style: none;
+        }
+
+        .group-2 ul {
+            list-style: none;
+        }
+
+        .group-1 ul li a{
+            width: 130px;height: 63px;
+            display: inline-block;
+        }
+
+        .group-2 ul li a{
+            width: 130px;height: 63px;
+            display: inline-block;
+        }
+
+        .bg-logout {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -93px;
+        }
+
+        .bg-manual_icon {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -840px;
+        }
+
+        .bg-room {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -176px;
+        }
+
+        .bg-schedule {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -259px;
+        }
+
+        .bg-reserve_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -342px;
+        }
+
+        .bg-manual_icon_white {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -924px;
+        }
+
+        .bg-reserve {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -508px;
+        }
+
+        .bg-room_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -10px;
+        }
+
+        .bg-logout_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -674px;
+        }
+
+        .bg-schedule_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -757px;
+        }
+
+        .bg-setup {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -591px;
+        }
+
+        .bg-setup_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -425px;
+        }
+
+        .bg-top1 {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1008px;
+        }
+
+        .bg-top2 {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1092px;
+        }
+
+
+        .language{
+            width: 130px;
+            text-align: center;
+            color: #00af82;
+            margin-left: 20px;
+        }
+
+
+        #nav_menu_top{
+            margin-left: 20px;
+            margin-bottom: 10px;
+            width: 20%;
+            font-size: 15px;
+        }
+        #nav_menu_top a{
+            color: #ffffff;
+        }
+        #nav_menu_top a.active{
+            background-color: #375a7f;
+        }
+        #create-form{
+            padding: 20px;
+            margin-left: 20px;
+            background-color: #303030;
+            color: #effdff;
+            font-size: 14px;
+        }
+        #create-form input{
+            height: 25px;
+        }
+
+        #create-form select{
+            height: 25px;
+        }
+
+        .inline_input{
+            width: 110%;
+            margin-left: -15px;
+        }
+        #btn{
+            color: #ffffff;
+            margin-left: 90%;
+            background-color: #00af82;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="row">
+        <div class="left">
+            <div class="logo">
+                <img src="../image/navi_logo.gif" >
+            </div>
+            <div class="user-login">
+                <img src="../image/login.gif">
+            </div>
+            <div class="menu-item">
+                <div class="group-1">
+                    <ul>
+                        <li class="bg-schedule">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-reserve">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-setup">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-room">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-manual_icon_white ">
+                            <a href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="group-2">
+                    <ul>
+                        <li class="bg-top1">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-logout">
+                            <a href="#"></a>
+                        </li>
+                    </ul>
+                    <div class="language row">
+                        <div class="change_lang col-md-4">
+                            <a>EN</a>
+                        </div>
+                        <div class="change_lang col-md-4">
+                            <a>JP</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="right ">
+            <header>
+                <nav class="navbar navbar-expand-sm bg-light">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fas fa-bars "></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Setting</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </header>
+            <div class="main-content">
+                <div id="nav_menu_top" class="mx-auto">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">User list</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Add user</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="content">
+                    <form action="#" id="create-form" class=" col-md-8">
+                        <div class="row">
+                            <label for="username" class="form-group col-md-3">Username</label>
+                            <input type="text" class="form-control col-md-9" id="username">
+                        </div>
+                        <div class="row">
+                            <label for="password" class="form-group col-md-3">Password</label>
+                            <input type="password" class="form-control col-md-9" id="password">
+                        </div>
+                        <div class="row">
+                            <label for="confirm" class="form-group col-md-3">Confirm Password</label>
+                            <input type="password" class="form-control col-md-9" id="confirm">
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3">First name</label>
+                            <input type="text" class="form-control form-group col-md-9">
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3">Last name</label>
+                            <input type="text" class="form-control col-md-9">
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3">Display name</label>
+                            <input type="text" class="form-control col-md-9">
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3">Email Address 1</label>
+                            <input type="email" class="form-control col-md-9">
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3">Email Address 2</label>
+                            <input type="email" class="form-control col-md-9">
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3" id="camera">Camera Display</label>
+                            <div class="col-md-3"><input type="text" class="form-control inline_input"></div>
+                            <div class="col-md-3"><input type="text" class="form-control inline_input"></div>
+                            <div class="col-md-3"><input type="text" class="form-control inline_input"></div>
+
+
+                        </div>
+                        <div class="row">
+                            <label class="form-group col-md-3">Name</label>
+                            <div class="col-md-3"><input type="text" class="form-control inline_input"></div>
+                            <div class="col-md-3"><input type="text" class="form-control inline_input"></div>
+                            <div class="col-md-3"><input type="text" class="form-control inline_input"></div>
+                        </div>
+                        <div class="row">
+                            <label for="conference_room" class="form-group col-md-3">Languge use in email</label>
+                            <select type="text" class="form-control form-group col-md-3 custom-select" id="conference_room"></select>
+                        </div>
+                        <div class="row">
+                            <label for="conference_room" class="form-group col-md-3">Is Chairman</label>
+                            <select type="text" class="form-control form-group col-md-3 custom-select" id="conference_room"></select>
+                        </div>
+                        <div class="row">
+                            <label for="conference_room" class="form-group col-md-3">Is Admin</label>
+                            <select type="text" class="form-control form-group col-md-3 custom-select" id="conference_room"></select>
+                        </div>
+                        <div class="row">
+                            <label for="conference_room" class="form-group col-md-3">Is Status</label>
+                            <select type="text" class="form-control form-group col-md-3 custom-select" id="conference_room"></select>
+                        </div>
+
+
+
+                        <button type="submit" class="btn" id="btn">Save</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

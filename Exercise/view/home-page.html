@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../fontawesome/css/fontawesome-all.min.css">
+    <script src="../../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../bootstrap/js/popper.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+
+        nav {
+            background: linear-gradient(to top right, #e8e8e8, #b3b3b3);
+            height: 40px;
+        }
+
+        .main-content{
+            background-image: url("../image/mian-bg2.gif");
+            padding-bottom: 10%;
+        }
+
+        .content{
+            margin: auto;
+            color: #ffffff;
+            text-align: center;
+        }
+        .content h1{
+            padding: 2%;
+        }
+        .content a{
+            display: inline-block;
+            background-color: #303030;
+            width: 100%;
+            height: 160px;
+            text-align: center;
+        }
+        .content i {
+            display: inline-block;
+            color: #ffffff;
+            font-size: 100px;
+            margin-top: 18%;
+        }
+        .right .row{
+            margin-top: 5%;
+        }
+        .left{
+            width: 208px;
+        }
+        .right{
+            width: calc(100% - 208px);
+        }
+
+        .menu-item{
+            background-color: #000000;
+            height: 540px;
+        }
+
+        .menu-item img{
+            border-image: black;
+        }
+        .group-1{
+            margin-left: 40px;
+
+        }
+        .group-2{
+            margin-left: 40px;
+            margin-top: 15px;
+        }
+        .group-1 button{
+            margin-top: 10px;
+        }
+
+        button{
+            border: none;
+        }
+        .language{
+            width: 130px;
+            text-align: center;
+            color: #008663;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="row">
+        <div class="left">
+            <div class="logo">
+                <img src="../image/navi_logo.gif" >
+            </div>
+            <div class="user-login">
+                <img src="../image/login.gif">
+            </div>
+            <div class="menu-item">
+                <div class="group-1">
+                    <button class="item-1">
+                        <img src="../image/schedule.gif">
+                    </button>
+                    <button>
+                        <img src="../image/reserve.gif">
+                    </button>
+                    <button>
+                        <img src="../image/setup.gif">
+                    </button>
+                    <button>
+                        <img src="../image/room.gif">
+                    </button>
+                    <button>
+                        <img src="../image/manual_icon_white.gif">
+                    </button>
+                </div>
+                <div class="group-2">
+                    <button>
+                        <img src="../image/top1.gif">
+                    </button>
+                    <button>
+                        <img src="../image/logout.gif">
+                    </button>
+                    <br>
+                    <div class="language">
+                        <a>EN</a>
+                        <a>JP</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="right ">
+            <header>
+                <nav class="navbar navbar-expand-sm bg-light">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link"><i class="fas fa-bars "></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </header>
+            <div class="main-content">
+                <div class="content col-md-7">
+                    <h1>Welcome</h1>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-home"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-users"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-calendar-alt"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-comments"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-cubes"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-book"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-cogs"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href=""><i class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Image</title>
+</head>
+<body>
+    <p>Choose your Pokemon</p>
+    <img src="bulbasaur.jpg">
+<script>
+    var Pokemon = document.querySelector('img');
+
+    Pokemon.onclick = function () {
+        var getImg = Pokemon.getAttribute('src');
+        if (getImg === 'bulbasaur.jpg'){
+            Pokemon.setAttribute('src','squirtle.jpg');
+        }else if(getImg === 'squirtle.jpg'){
+            Pokemon.setAttribute('src','chanmander.jpg');
+        }else{
+            Pokemon.setAttribute('src','bulbasaur.jpg');
+        }
+    }
+
+</script>
+</body>
+</html>
