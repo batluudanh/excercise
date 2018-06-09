@@ -41,7 +41,7 @@
 
         .menu-item{
             background-color: #000000;
-            height: 540px;
+            height: 94%;
         }
 
         .menu-item img{
@@ -53,23 +53,140 @@
         }
         .group-2{
             margin-left: 40px;
-            margin-top: 15px;
-        }
-        .group-1 button{
-            margin-top: 10px;
+            margin-top: 30px;
         }
 
-        button{
-            border: none;
+        .group-1 ul {
+            list-style: none;
         }
+
+        .group-2 ul {
+            list-style: none;
+        }
+
+        .group-1 ul li a{
+            width: 130px;height: 63px;
+            display: inline-block;
+        }
+
+        .group-2 ul li a{
+            width: 130px;height: 63px;
+            display: inline-block;
+        }
+
+        .bg-logout {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -93px;
+        }
+
+        .bg-logout:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -674px;
+        }
+
+        .bg-manual_icon {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -840px;
+        }
+
+        .bg-room {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -176px;
+        }
+
+        .bg-room:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -10px;
+        }
+
+        .bg-schedule {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -259px;
+        }
+
+        .bg-schedule:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -757px;
+        }
+
+        .bg-reserve_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -342px;
+        }
+
+        .bg-manual_icon_white {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -924px;
+        }
+
+        .bg-manual_icon_white:hover{
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -840px;
+        }
+
+        .bg-reserve {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -508px;
+        }
+
+        .bg-reserve:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -342px;
+        }
+
+        .bg-room_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -10px;
+        }
+
+        .bg-logout_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -674px;
+        }
+
+        .bg-schedule_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -757px;
+        }
+
+        .bg-setup {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -591px;
+        }
+
+        .bg-setup:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -425px;
+        }
+
+        .bg-setup_over {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -425px;
+        }
+
+        .bg-top1 {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1008px;
+        }
+
+        .bg-top1:hover{
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1092px;
+        }
+
+        .bg-top2 {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1092px;
+        }
+
+
         .language{
             width: 130px;
             text-align: center;
-            color: #008663;
+            color: #00af82;
+            margin-left: 20px;
         }
-        .content{
 
-        }
         #create-form{
             padding: 20px;
             margin-left: 20px;
@@ -106,33 +223,40 @@
             </div>
             <div class="menu-item">
                 <div class="group-1">
-                    <button class="item-1">
-                        <img src="../image/schedule.gif">
-                    </button>
-                    <button>
-                        <img src="../image/reserve-over.gif">
-                    </button>
-                    <button>
-                        <img src="../image/setup.gif">
-                    </button>
-                    <button>
-                        <img src="../image/room.gif">
-                    </button>
-                    <button>
-                        <img src="../image/manual_icon_white.gif">
-                    </button>
+                    <ul>
+                        <li class="bg-schedule">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-reserve">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-setup">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-room">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-manual_icon_white ">
+                            <a href="#"></a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="group-2">
-                    <button>
-                        <img src="../image/top1.gif">
-                    </button>
-                    <button>
-                        <img src="../image/logout.gif">
-                    </button>
-                    <br>
-                    <div class="language">
-                        <a>EN</a>
-                        <a>JP</a>
+                    <ul>
+                        <li class="bg-top1">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-logout">
+                            <a href="#"></a>
+                        </li>
+                    </ul>
+                    <div class="language row">
+                        <div class="change_lang col-md-4">
+                            <a>EN</a>
+                        </div>
+                        <div class="change_lang col-md-4">
+                            <a>JP</a>
+                        </div>
                     </div>
 
 

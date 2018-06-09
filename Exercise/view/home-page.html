@@ -25,9 +25,18 @@
             height: 40px;
         }
 
+        .nav-btn a{
+            color: red;
+        }
+
         .main-content{
             background-image: url("../image/mian-bg2.gif");
-            padding-bottom: 10%;
+            padding-bottom: 3%;
+        }
+
+        .main-title{
+            padding: 3%;
+            font-size: 350%;
         }
 
         .content{
@@ -35,21 +44,19 @@
             color: #ffffff;
             text-align: center;
         }
-        .content h1{
-            padding: 2%;
-        }
         .content a{
             display: inline-block;
+            padding: 20%;
             background-color: #303030;
-            width: 100%;
-            height: 160px;
+            width: 12vw;
+            height: 12vw;
             text-align: center;
         }
-        .content i {
-            display: inline-block;
+        .content span {
             color: #ffffff;
-            font-size: 100px;
-            margin-top: 18%;
+            font-size: 500%;
+
+
         }
         .right .row{
             margin-top: 5%;
@@ -63,7 +70,7 @@
 
         .menu-item{
             background-color: #000000;
-            height: 540px;
+            height: 87%;
         }
 
         .menu-item img{
@@ -75,19 +82,102 @@
         }
         .group-2{
             margin-left: 40px;
-            margin-top: 15px;
-        }
-        .group-1 button{
-            margin-top: 10px;
+            margin-top: 30px;
         }
 
-        button{
-            border: none;
+        .group-1 ul {
+            list-style: none;
         }
+
+        .group-2 ul {
+            list-style: none;
+        }
+
+        .group-1 ul li a{
+            width: 130px;height: 63px;
+            display: inline-block;
+        }
+
+        .group-2 ul li a{
+            width: 130px;height: 63px;
+            display: inline-block;
+        }
+
+        .bg-logout {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -93px;
+        }
+
+        .bg-logout:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -674px;
+        }
+
+        .bg-room {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -176px;
+        }
+
+        .bg-room:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -10px;
+        }
+
+        .bg-schedule {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -259px;
+        }
+
+        .bg-schedule:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -757px;
+        }
+
+        .bg-manual_icon_white {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -924px;
+        }
+
+        .bg-manual_icon_white:hover{
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -840px;
+        }
+
+        .bg-reserve {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -508px;
+        }
+
+        .bg-reserve:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -342px;
+        }
+
+        .bg-setup {
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -591px;
+        }
+
+        .bg-setup:hover{
+            width: 130px; height: 63px;
+            background: url('../image/css_sprites.png') -10px -425px;
+        }
+
+        .bg-top1 {
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1008px;
+        }
+
+        .bg-top1:hover{
+            width: 131px; height: 64px;
+            background: url('../image/css_sprites.png') -10px -1092px;
+        }
+
         .language{
             width: 130px;
             text-align: center;
-            color: #008663;
+            color: #00af82;
+            margin-left: 20px;
         }
 
     </style>
@@ -104,33 +194,40 @@
             </div>
             <div class="menu-item">
                 <div class="group-1">
-                    <button class="item-1">
-                        <img src="../image/schedule.gif">
-                    </button>
-                    <button>
-                        <img src="../image/reserve.gif">
-                    </button>
-                    <button>
-                        <img src="../image/setup.gif">
-                    </button>
-                    <button>
-                        <img src="../image/room.gif">
-                    </button>
-                    <button>
-                        <img src="../image/manual_icon_white.gif">
-                    </button>
+                    <ul>
+                        <li class="bg-schedule">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-reserve">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-setup">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-room">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-manual_icon_white ">
+                            <a href="#"></a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="group-2">
-                    <button>
-                        <img src="../image/top1.gif">
-                    </button>
-                    <button>
-                        <img src="../image/logout.gif">
-                    </button>
-                    <br>
-                    <div class="language">
-                        <a>EN</a>
-                        <a>JP</a>
+                    <ul>
+                        <li class="bg-top1">
+                            <a href="#"></a>
+                        </li>
+                        <li class="bg-logout">
+                            <a href="#"></a>
+                        </li>
+                    </ul>
+                    <div class="language row">
+                        <div class="change_lang col-md-4">
+                            <a>EN</a>
+                        </div>
+                        <div class="change_lang col-md-4">
+                            <a>JP</a>
+                        </div>
                     </div>
 
 
@@ -144,7 +241,7 @@
                         <li class="nav-item">
                             <a class="nav-link"><i class="fas fa-bars "></i></a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item nav-btn">
                             <a class="nav-link" href="#">Home</a>
                         </li>
 
@@ -152,34 +249,34 @@
                 </nav>
             </header>
             <div class="main-content">
-                <div class="content col-md-7">
-                    <h1>Welcome</h1>
+                <div class="content col-md-9">
+                    <p class="main-title">Welcome!</p>
                     <div class="row">
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-home"></i></a>
+                            <a href=""><span class="fas fa-home"></span></a>
                         </div>
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-users"></i></a>
+                            <a href=""><span class="fas fa-users"></span></a>
                         </div>
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-calendar-alt"></i></a>
+                            <a href=""><span class="fas fa-calendar-alt"></span></a>
                         </div>
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-comments"></i></a>
+                            <a href=""><span class="fas fa-comments"></span></a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-cubes"></i></a>
+                            <a href=""><span class="fas fa-cubes"></span></a>
                         </div>
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-book"></i></a>
+                            <a href=""><span class="fas fa-book"></span></a>
                         </div>
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-cogs"></i></a>
+                            <a href=""><span class="fas fa-cogs"></span></a>
                         </div>
                         <div class="col-md-3">
-                            <a href=""><i class="fas fa-sign-out-alt"></i></a>
+                            <a href=""><span class="fas fa-sign-out-alt"></span></a>
                         </div>
                     </div>
 
