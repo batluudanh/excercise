@@ -34,9 +34,19 @@
 
         .left{
             width: 208px;
+            transition: width 2s;
         }
         .right{
             width: calc(100% - 208px);
+            transition: width 2s;
+        }
+
+        .collapsed{
+            width: 0px;
+        }
+
+        .collap{
+            width: 100%;
         }
 
         .menu-item{
@@ -267,7 +277,7 @@
             <header>
                 <nav class="navbar navbar-expand-sm bg-light">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item" id="toggle_item">
                             <a class="nav-link"><i class="fas fa-bars "></i></a>
                         </li>
                         <li class="nav-item">
@@ -359,5 +369,11 @@
 
 </div>
 
+<script>
+    $('#toggle_item').click(function () {
+        $('.left').toggleClass('collapsed');
+        $('.right').toggleClass('collap');
+    });
+</script>
 </body>
 </html>
