@@ -16,7 +16,7 @@
         }
 
         body, html {
-            width: 100%;
+            width: 1850px;
             height: 100%;
         }
 
@@ -235,12 +235,36 @@
         .label-confirm{
             color: black;
             background-color: #ffffff;
-            width: 80%;
             text-align: center;
+            width: 100%;
         }
+
+        .modal {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 )
+            url('../image/ajax-loader.gif')
+            50% 50%
+            no-repeat;
+        }
+
+        body.loading .modal {
+            overflow: hidden;
+        }
+
+        body.loading .modal {
+            display: block;
+        }
+
+
     </style>
 </head>
-<body>
+<body id="body">
 <div class="wrapper">
     <div class="row">
         <div class="left">
@@ -319,20 +343,20 @@
                     </ul>
                 </div>
                 <div class="content">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="user_table">
                         <thead>
                         <tr>
-                            <th scope="col">Username</th>
-                            <th scope="col">Display name</th>
-                            <th scope="col">Email 1</th>
-                            <th scope="col">Email 2</th>
-                            <th scope="col">Is Chairman</th>
-                            <th scope="col">Is Admin</th>
-                            <th scope="col">Self order
+                            <th>Username</th>
+                            <th>Display name</th>
+                            <th>Email 1</th>
+                            <th>Email 2</th>
+                            <th>Is Chairman</th>
+                            <th>Is Admin</th>
+                            <th>Self order
                                 <br/>
                                 <label class="label-confirm">Confirm</label>
                             </th>
-                            <th scope="col">Action</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -368,7 +392,20 @@
 
                 </div>
 
+                <div class="pagin">
+                    <ul class="pagination" id="pagination">
+                        <!--<li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+                        <!--<li class="page-item"><a class="page-link" href="#">1</a></li>-->
+                        <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                        <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                        <!--<li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+                    </ul>
+                </div>
+
             </div>
+
+            <div class="modal"></div>
+
         </div>
     </div>
 
@@ -379,6 +416,120 @@
         $('.left').toggleClass('collapsed');
         $('.right').toggleClass('collap');
     });
+
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://training.gemvietnam.com/dummy-api/users.json";
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var myArr = JSON.parse(this.responseText);
+            var current_page = 1;
+            var limit = 10;
+
+            drawTable(myArr,current_page,limit);
+
+            function getEventTarget(e) {
+                e = e || window.event;
+                return e.target || e.srcElement;
+            }
+
+            var ul = document.getElementById('pagination');
+            ul.onclick = function(event) {
+                var target = getEventTarget(event);
+                current_page = target.innerHTML;
+                drawTable(myArr,current_page,limit);
+                console.log(current_page);
+                // loading icon
+                var body = document.getElementById('body');
+                body.classList.add("loading");
+                setTimeout(function(){
+                    body.classList.remove("loading");
+                }, 3000);
+
+
+            };
+
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+    function drawTable(arr,page,limit) {
+        var total_page = Math.ceil(arr.length / limit);
+        var data = "";
+        var i;
+        var table = document.getElementById('user_table').getElementsByTagName('tbody')[0];
+
+        if (page < 1) page = 1;
+        if (page > total_page) page = total_page;
+
+        for (i= (page-1)*limit; i < page*limit ; i++){
+            var chairMan = arr[i].is_chairman;
+            var admin = arr[i].is_admin;
+            if (chairMan == 0){
+                chairMan = "No";
+            }else if (chairMan == 1){
+                chairMan = "Yes";
+            }
+
+            if (admin == 0){
+                admin = "No";
+            }else if (admin == 1){
+                admin = "Yes";
+            }
+
+            data += "<tr>";
+            data += "<td>"+ arr[i].username +"</td>";
+            data += "<td>"+ arr[i].display_name +"</td>";
+            data += "<td>"+ arr[i].email +"</td>";
+            data += "<td>"+ arr[i].email_alt +"</td>";
+            data += "<td>"+ chairMan +"</td>";
+            data += "<td>"+ admin +"</td>"
+            data += "<td><label class=\"label-confirm\">"+ arr[i].order +"</label></td>";
+            data += "<td>" +
+                "<span class=\"edit-btn\"><i class=\"fas fa-edit\"></i></span>" +
+                "<span class=\"delete-btn\"><i class=\"fas fa-trash\"></i></span>" +
+                "</td>";
+        }
+        table.innerHTML = data;
+        pagination(total_page);
+        display_btn(page,total_page);
+    }
+
+    function pagination(total_page) {
+        var pagin = document.getElementById('pagination');
+        var html = "";
+        var prev = "<li class=\"page-item\" id='prev'><a class=\"page-link\">Previous</a></li>";
+        var next = "<li class=\"page-item\" id='next'><a class=\"page-link\">Next</a></li>";
+        var link = "";
+        var i;
+        for (i=1; i <= total_page; i++){
+            link += "<li class=\"page-item\"><a class=\"page-link\" href=\"#\">"+i+"</a></li>";
+        }
+        html += prev;
+        html += link;
+        html += next;
+
+        pagin.innerHTML = html;
+    }
+    
+    function display_btn(page,total_page) {
+        var btn_prev = document.getElementById('prev');
+        var btn_next = document.getElementById('next');
+
+        if (page == 1){
+            btn_prev.style.visibility = "hidden";
+        }else {
+            btn_prev.style.visibility = "visible";
+        }
+
+        if (page == total_page){
+            btn_next.style.visibility = "hidden";
+        }else {
+            btn_next.style.visibility = "visible";
+        }
+    }
+
 </script>
 </body>
 </html>

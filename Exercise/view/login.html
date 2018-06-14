@@ -41,6 +41,11 @@
             padding: 15px;
             height: 270px;
         }
+
+        .err{
+            color: #d01a0c;
+        }
+
     </style>
 </head>
 <body>
@@ -49,20 +54,102 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>Login</b></div>
                 <div class="panel-body">
-                    <form action="#">
-                        <div class="form-group">
-                            <label for="email">Username:</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd">
-                        </div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Login</button>
+                    <form action="" name="theForm" id="theForm" method="post">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" id="username">
+                            </div>
+                        <div id="username_err" class="err"></div>
+
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="pwd">
+                            </div>
+                        <div id="password_err" class="err"></div>
+                        <button type="button" class="btn btn-primary" onclick="submit_function()"><i class="fas fa-sign-in-alt"></i>  Login</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+<script>
+
+    // Xóa trắng thẻ input
+    var user = document.getElementById('username');
+    var pass = document.getElementById('pwd');
+    var username_err = document.getElementById('username_err');
+    var password_err = document.getElementById('password_err');
+    user.addEventListener("click",function () {
+        this.value = "";
+        username_err.classList.remove("err");
+        username_err.innerText = "";
+    })
+
+    pass.addEventListener("click",function () {
+        this.value = "";
+        password_err.classList.remove("err");
+        password_err.innerText = "";
+    })
+
+    // Regular Expression
+    var RegexUsername = "^[a-zA-Z0-9 @-_*.$%]+$";
+    // var RegexPassword = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*.:-+])[0-9a-zA-Z]{6,16}$";
+    var RegexPassword = "^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!#'$%&()=~|/_]).{6,16})$";
+
+
+    function submit_function() {
+
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('pwd').value;
+
+        if (checkRegex(username,RegexUsername)== false){
+            username_err.classList.add("err");
+            username_err.innerText = "Tên người dùng sai định dạng";
+        }
+
+        if (checkRegex(password,RegexPassword)== false){
+            password_err.classList.add("err");
+            password_err.innerText = "Password sai định dạng";
+        }
+
+        if (checkRegex(username,RegexUsername)== true && checkRegex(password,RegexPassword)== true){
+            // call API
+            var xmlhttp = new XMLHttpRequest();
+            var url = "https://training.gemvietnam.com/dummy-api/users.json";
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myArr = JSON.parse(this.responseText);
+                    // console.log(myArr);
+                    var i;
+                    for (i=0; i < myArr.length; i++){
+                        if (username == myArr[i].username && password == myArr[i].password){
+                            alert('Thành công');
+                        }else if(username != myArr[i].username || password != myArr[i].password) {
+                            username_err.classList.add("err");
+                            username_err.innerText = "Tên tài khoản không tồn tại";
+                            password_err.classList.add("err");
+                            password_err.innerText = "Sai mật khẩu";
+                        }
+                    }
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+
+
+    }
+
+    function checkRegex(str,regex) {
+        var str = str;
+        var patt = new RegExp(regex);
+        var result = patt.test(str);
+        return result;
+    }
+
+    console.log(checkRegex("He90@abcd",RegexUsername));
+</script>
 </body>
 </html>
