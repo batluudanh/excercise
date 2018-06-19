@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Format Date</title>
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../fontawesome/css/fontawesome-all.min.css">
+    <script src="../../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../bootstrap/js/popper.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            background-image: url("../image/sakura.jpg");
+            background-size: 100%;
+        }
+
+        .content{
+            margin: 9% 0 0 30%;
+            width: 35%;
+        }
+
+        .date-form{
+            padding: 0px;
+            border: solid 1px #e095b5;
+        }
+
+        .form-header{
+            background-color: #4a4e4e;
+            color: #effdff;
+            text-align: center;
+            height: 8%;
+            padding: 10px;
+        }
+
+        .form-body{
+            background: linear-gradient( to top right, #420288, #7f0b88);
+            height: 20%;
+            padding: 2vh;
+        }
+        .form-group{
+            margin-bottom: 0px;
+        }
+
+        .error{
+            color: red;
+        }
+
+        .date-label{
+            color: #ffffff;
+        }
+
+        .show_date{
+            background-color: #20a847;
+            height: 35px;
+            display: none;
+        }
+
+        .visible {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 2s linear;
+        }
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 2s, opacity 2s linear;
+        }
+
+        #btn-submit{
+            margin-left: 40%;
+            margin-top: 3%;
+            width: 100px;
+            border-radius: 5px;
+        }
+
+        #btn-submit:hover{
+            color: #db8615;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="content">
+                <div id="show_date" class="show_date"></div>
+                <div class="date-form">
+                    <div class="form-header">Nhập ngày tháng theo đúng định dạng</div>
+                    <div class="form-body">
+                        <div class="form-group row">
+                            <label for="input_date" class="col-md-3 date-label">Nhập ngày</label>
+                            <input type="text" value="" name="date" id="input_date" class="col-md-7" placeholder="YYYY-MM-DD">
+                        </div>
+                        <div id="error" class="error"></div>
+                        <input type="submit" id="btn-submit" onclick="clickDate()" value="Hiển thị"><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+
+    var regexDateFormat = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/ ;
+    var inputDate = document.getElementById('input_date');
+    var show_date = document.getElementById('show_date');
+    var error_msg = document.getElementById('error');
+
+    var weekday = new Array(7);
+    weekday[0] = "Chủ Nhật";
+    weekday[1] = "Thứ Hai";
+    weekday[2] = "Thứ Ba";
+    weekday[3] = "Thứ Tư";
+    weekday[4] = "Thứ Năm";
+    weekday[5] = "Thứ Sáu";
+    weekday[6] = "Thứ Bảy";
+
+    function clickDate() {
+        var date = inputDate.value;
+        if (compareDate(date) == false){
+            document.getElementById("error").innerText = "Ngày tháng bạn nhập sai định dạng";
+        }else {
+            showDate(date);
+            show_date.classList.remove("hidden");
+            setTimeout(function () {
+                show_date.classList.add("hidden");
+            },3000);
+
+        }
+
+    }
+
+    function showDate(date) {
+        var str = date;
+        var data = getDataFromDate(str);
+        var dayOfWeek = getDayOfTheWeek(str);
+        var day = data.day;
+        var month = data.month;
+        var year = data.year;
+        show_date.style.display = "block";
+        show_date.innerText = dayOfWeek + " ngày " + day + " tháng " + month + " năm "+year;
+        return false;
+    }
+
+    function compareDate(date) {
+        var day = date;
+        var compare = regexDateFormat.test(day);
+        return compare;
+    }
+
+    inputDate.addEventListener("click",function () {
+        show_date.innerText = "";
+        error_msg.innerText = "";
+    });
+
+    function getDataFromDate(date) {
+        var data = date;
+        var res = data.split("-");
+        var dateObj = {
+            year : res[0],
+            month : res[1],
+            day : res[2]
+        };
+        return dateObj;
+    }
+
+    function getDayOfTheWeek(date) {
+        var data = getDataFromDate(date);
+        var year = data.year;
+        var month = data.month - 1;
+        var day = data.day;
+
+        var d = new Date(year,month,day);
+        return weekday[(d.getDay())];
+
+    }
+</script>
+</body>
+</html>

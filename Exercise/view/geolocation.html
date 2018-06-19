@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <label for="addressInput">Search location:</label>
+    <input type="text" id="addressInput" size="15"/>
+    <label for="radiusSelect">Radius:</label>
+    <select id="radiusSelect" label="Radius" onchange="changeCircle()">
+        <option value="1000" selected>1 kms</option>
+        <option value="3000">3 kms</option>
+        <option value="5000">5 kms</option>
+        <option value="8000">8 kms</option>
+        <option value="10000">10 kms</option>
+    </select>
+
+    <input type="button" id="searchButton" value="Search"/>
+    <button id="more">More results</button>
+</div>
+<div id="map"></div>
+<script>
+
+    // set radius on select
+    function getSelectRadius() {
+        var select_btn = document.getElementById('radiusSelect');
+        var radius = select_btn.options[select_btn.selectedIndex].value;
+        return radius;
+    }
+
+    function changeCircle() {
+        console.log(getSelectRadius());
+        initMap(getSelectRadius());
+    }
+
+    var searchButton = document.getElementById('searchButton');
+    searchButton.addEventListener("click",function () {
+        var location_find = document.getElementById('addressInput').value;
+        initMap(getSelectRadius(),location_find);
+    });
+
+
+    var map, infoWindow;
+    var getNextPage = null;
+    var moreButton = document.getElementById('more');
+    moreButton.onclick = function() {
+        moreButton.disabled = true;
+        if (getNextPage) getNextPage();
+    };
+
+
+    function initMap(circle_radius = 1000, search_place = 'restaurant' ) {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        // HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                console.log(pos);
+                var myLatLng = new google.maps.LatLng(pos.lat,pos.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatLng
+                });
+                marker.setMap(map);
+
+                var drawCircle = new google.maps.Circle({
+                    strokeColor: '#49ea40',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#49ea40',
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: myLatLng,
+                    radius: parseFloat(circle_radius)
+                });
+
+                var service = new google.maps.places.PlacesService(map);
+                service.nearbySearch({
+                    location: pos,
+                    radius: parseFloat(circle_radius),
+                    type: [search_place]
+                }, callback);
+
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Địa điểm của bạn!');
+                infoWindow.open(map);
+                map.setCenter(pos);
+
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+    }
+
+    function callback(results, status, pagination) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+                // console.log(results);
+                moreButton.disabled = !pagination.hasNextPage;
+                getNextPage = pagination.hasNextPage && function() {
+                    pagination.nextPage();
+                };
+            }
+        }
+    }
+
+    function createMarker(place) {
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location,
+            icon: 'https://www.google.com/maps/vt/icon/name=assets/icons/poi/tactile/pinlet_shadow-2-medium.png,assets/icons/poi/tactile/pinlet_outline_v2-2-medium.png,assets/icons/poi/tactile/pinlet-2-medium.png,assets/icons/poi/quantum/pinlet/restaurant_pinlet-2-medium.png&highlight=ff000000,ffffff,db4437,ffffff&color=ff000000?scale=1'
+
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.setContent('<div>Tên: '+place.name+'</div><br />' +
+                '<div>Địa chỉ: '+place.vicinity+'</div><br />'+
+                '<div>Rating: '+place.rating+'</div><br />');
+            infoWindow.open(map, this);
+        });
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KivmUcq4FNmgjszJohMPO3RB0aMRBLk&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
