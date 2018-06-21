@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.row{
+    margin-left: 0px;
+}
+
+.page-title{
+    margin-left: 40%;
+    padding: 15px;
+}
+
+.block-question{
+    margin: 10px 5px 0px 0px;
+    border: solid 1px #000000;
+    padding: 5px;
+}
+
+.answer-action{
+    width: 40px;
+}
+
+.action-delete{
+    margin-left: 5px;
+}
+
+.messenger-login{
+    color: red;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.signup-input{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.content-add{
+    border: solid 1px #000000;
+    padding: 5px;
+    text-align: center;
+    background-color: #8b8f8f;
+}
+
+.input-area{
+    width: 400px;
+    height: 100px;
+}
+
+.messenger-addans{
+    color: #159148;
+}
