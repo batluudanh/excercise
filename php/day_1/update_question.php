@@ -16,7 +16,7 @@ session_start();
 include "database.php";
 include "role.php";
 if ($role != 1){
-    header('location: home_view.php');
+    header('location: index.php');
 }
 
 $id = $_GET['id'];
@@ -25,7 +25,7 @@ $id = $_GET['id'];
 <div class="wrapper">
     <header>
         <nav class="navbar bg-dark navbar-dark justify-content-between">
-            <a class="navbar-brand" href="home_view.php">Question & Answer</a>
+            <a class="navbar-brand" href="index.php">Question & Answer</a>
             <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0">Đăng xuất</button></a>
         </nav>
         <h1 class="page-title">Thêm câu hỏi</h1>
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])){
         $sql_update = "update qna__questions set question = '$new_question' WHERE id = '$id'";
         mysqli_query($con,$sql_update);
         echo "Sửa thành công";
-        header("location:home_view.php");
+        header("location:index.php");
     }
 
 }

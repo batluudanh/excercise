@@ -16,7 +16,7 @@ session_start();
 include "database.php";
 include "role.php";
 if ($role != 1){
-    header('location: home_view.php');
+    header('location: index.php');
 }
 
 $id_question = $_GET['id'];
@@ -27,7 +27,7 @@ $query_show_quest = mysqli_query($con,$sql_show_quest);
 <div class="wrapper">
     <header>
         <nav class="navbar bg-dark navbar-dark justify-content-between">
-            <a class="navbar-brand" href="home_view.php">Question & Answer</a>
+            <a class="navbar-brand" href="index.php">Question & Answer</a>
             <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0">Đăng xuất</button></a>
         </nav>
         <h1 class="page-title">Trả lời câu hỏi</h1>

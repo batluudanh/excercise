@@ -15,7 +15,7 @@
 <div class="wrapper">
     <header>
         <nav class="navbar bg-dark navbar-dark justify-content-between">
-            <a class="navbar-brand" href="home_view.php">Question & Answer</a>
+            <a class="navbar-brand" href="index.php">Question & Answer</a>
             <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0">Đăng xuất</button></a>
         </nav>
         <h1 class="page-title">Thêm câu hỏi</h1>

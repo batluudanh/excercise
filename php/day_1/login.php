@@ -92,7 +92,7 @@
 
                                 session_start();
                                 $_SESSION['user_id'] = $row['id'];
-                                header("Location: home_view.php");
+                                header("Location: index.php");
                                 die();
                             }
                         }

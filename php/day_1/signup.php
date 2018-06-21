@@ -27,7 +27,10 @@
     <link rel="stylesheet" type="text/css" href="css/mystyle.css">
 </head>
 <body>
+<?php
+include "database.php";
 
+?>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
@@ -47,7 +50,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input signup-input" data-validate = "Please enter re-password">
-                    <input class="input100" type="password" name="password" placeholder="Confirm Password">
+                    <input class="input100" type="password" name="re-password" placeholder="Confirm Password">
                     <span class="focus-input100"></span>
                 </div>
                 <div class="wrap-input100 validate-input signup-input" data-validate = "Please enter firstname">
@@ -64,6 +67,13 @@
                         Sign Up
                     </button>
                 </div>
+
+                <div class="container-login100-form-btn">
+                    <a href="login.php">
+                        Sign In
+                    </a>
+                </div>
+
                 <div class="messenger-login">
                     <?php
                     include 'database.php';
@@ -72,6 +82,8 @@
                         $username = "";
                         $password = "";
                         $re_pass = "";
+                        $first_name = "";
+                        $last_name = "";
 
 
                         if (!isset($_POST['username']) || $_POST['username'] == null){
@@ -81,27 +93,42 @@
                         }
 
                         if (!isset($_POST['password']) || $_POST['password'] == null){
-                            echo "Bạn chưa nhập password";
+                            echo "Bạn chưa nhập password"."<br />";
                         }else{
                             $password = $_POST['password'];
                         }
 
-                        if ($username != "" && $password != ""){
-                            $sql = "Select * from users where email = '$username' AND password = '$password' ";
-                            $query = mysqli_query($con,$sql);
-                            if (mysqli_num_rows($query) == 0){
-                                echo "Tên tài khoản hoặc mật khẩu không chính xác";
-                            }else{
-                                echo "Được rồi!";
-                                $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
-                                echo '<pre>';
-                                print_r($row);
-                                echo '</pre>';
+                        if (!isset($_POST['re-password']) || $_POST['re-password'] == null){
+                            echo "Bạn chưa nhập confirm password"."<br />";
+                        }else{
+                            $re_pass = $_POST['re-password'];
+                        }
 
-                                session_start();
-                                $_SESSION['user_id'] = $row['id'];
-                                header("Location: home_view.php");
-                                die();
+                        if ($_POST['firstname'] != null && $_POST['firstname'] != ""){
+                            $first_name = $_POST['firstname'];
+                        }
+
+                        if ($_POST['lastname'] != null && $_POST['lastname'] != ""){
+                            $last_name = $_POST['lastname'];
+                        }
+
+                        if ($username != "" && $password != "" && $re_pass!="" && $password == $re_pass){
+                            $sql_select_user = "SELECT * FROM users WHERE email = '$username' ";
+                            $query_select_user = mysqli_query($con,$sql_select_user) or die("Không thể truy cập");
+                            if (mysqli_num_rows($query_select_user) > 0){
+                                echo "Tên đăng nhập đã được sử dụng!";
+                            }else{
+                                $sql_add_user = "INSERT INTO users(email,password,first_name,last_name)VALUES ('$username','$password','$first_name','$last_name')";
+                                $query_add_user = mysqli_query($con,$sql_add_user);
+                                echo "Thêm tài khoản thành công!";
+
+                                // add role
+                                if ($query_add_user){
+                                    $last_id = mysqli_insert_id($con);
+                                    $sql_add_role = "INSERT INTO role_users(user_id,role_id) VALUES ('$last_id',2)";
+                                    mysqli_query($con,$sql_add_role);
+                                }
+
                             }
                         }
 
